@@ -93,35 +93,31 @@ public class JobData {
      * @param value The search term to look for
      * @return      List of all jobs with at least one field containing the value
      */
-//    public static ArrayList<HashMap<String, String>> findByValue(String value) {
-//
-//        // load data, if not already loaded
-//        loadData();
-//
-//        // TODO - implement this method
-//        return null;
-//    }
     public static ArrayList<HashMap<String, String>> findByValue(String value) {
 
         // load data, if not already loaded
         loadData();
 
         // TODO - implement this method
+//        return null;
 
-        ArrayList<HashMap<String, String>> searchResult = new ArrayList<>();
-        for (HashMap<String, String> row : allJobs) {
-        //looping through all jobs to get keySet
-        for (String result : row.keySet()) {
-            //assigning string value to get keyset value and change it to lower case
-            String aValue = row.get(result);
-            //looping through all jobs value and matching it user search
-            if (aValue.toLowerCase().contains(value.toLowerCase())) {
-                searchResult.add(row);
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for(HashMap<String, String> job : allJobs){
+
+            for(String aValue : job.values()){
+                if(aValue.toLowerCase().contains(value.toLowerCase())){
+                    if(!jobs.contains(job)){
+                        jobs.add(job);
+                    }
+                }
             }
+
         }
+
+        return jobs;
+
     }
-            return searchResult;
-}
 
     /**
      * Read in data from a CSV file and store it in a list
